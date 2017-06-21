@@ -1,4 +1,7 @@
 # GitLab-Tips
+## Index
+- [Installation](Installation.md)
+
 ## SMTP with SendGrid
 ```shell
 sudo nano /etc/gitlab/gitlab.rb
