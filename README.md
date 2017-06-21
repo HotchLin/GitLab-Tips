@@ -1,4 +1,18 @@
 # GitLab-Tips
+## SMTP with SendGrid
+```shell
+sudo nano /etc/gitlab/gitlab.rb
+```
+> gitlab_rails['smtp_enable'] = true  
+gitlab_rails['smtp_address'] = "smtp.sendgrid.net"  
+gitlab_rails['smtp_port'] = 587  
+gitlab_rails['smtp_user_name'] = "apikey"  
+gitlab_rails['smtp_password'] = "your_apikey"  
+gitlab_rails['smtp_domain'] = "smtp.sendgrid.net"  
+gitlab_rails['smtp_authentication'] = "login"  
+gitlab_rails['smtp_enable_starttls_auto'] = true  
+gitlab_rails['smtp_tls'] = false
+
 ## Maintenance
 - Display Maintenance Page
 ```shell
