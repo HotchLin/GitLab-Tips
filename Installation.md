@@ -13,6 +13,13 @@ sudo add-apt-repository ppa:certbot/certbot
 sudo apt-get update -y
 sudo apt-get install -y certbot
 sudo mkdir -p /var/www/letsencrypt
+sudo nano /etc/gitlab/gitlab.rb
+```
+> . . .  
+nginx['custom_gitlab_server_config'] = "location ^~ /.well-known { root /var/www/letsencrypt; }"  
+. . .
+```shell
+sudo gitlab-ctl reconfigure
 sudo certbot certonly --webroot --webroot-path=/var/www/letsencrypt -d [your_domain]
 sudo crontab -e
 ```
@@ -31,8 +38,6 @@ nginx['redirect_http_to_https'] = true
 nginx['ssl_certificate'] = "/etc/letsencrypt/live/your_domain/fullchain.pem"  
 nginx['ssl_certificate_key'] = "/etc/letsencrypt/live/your_domain/privkey.pem"  
 . . .  
-nginx['custom_gitlab_server_config'] = "location ^~ /.well-known { root /var/www/letsencrypt; }"  
-. . .
 ```shell
 sudo gitlab-ctl reconfigure
 ```
