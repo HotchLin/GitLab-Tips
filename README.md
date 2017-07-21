@@ -45,3 +45,19 @@ sudo gitlab-rake gitlab:backup:restore BACKUP=[EPOCH_YYYY_MM_DD_GitLab version]
 sudo gitlab-ctl start
 sudo gitlab-rake gitlab:check SANITIZE=true
 ```
+### Setup Whilelist of Rack Attack
+```shell
+sudo nano /etc/gitlab/gitlab.rb
+```
+> ...  
+gitlab_rails['rack_attack_git_basic_auth'] = {  
+&nbsp; 'enabled' => true,  
+&nbsp; 'ip_whitelist' => ["127.0.0.1", ...etc],  
+&nbsp; 'maxretry' => 10,  
+&nbsp; 'findtime' => 60,  
+&nbsp; 'bantime' => 300  
+}  
+...
+```shell
+sudo gitlab-ctl reconfigure
+```
