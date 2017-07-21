@@ -16,7 +16,7 @@ sudo mkdir -p /var/www/letsencrypt
 sudo nano /etc/gitlab/gitlab.rb
 ```
 > . . .  
-external_url 'http://[your_domain]'  
+external_url 'http://your_domain'  
 . . .  
 nginx['custom_gitlab_server_config'] = "location ^~ /.well-known { root /var/www/letsencrypt; }"  
 . . .
