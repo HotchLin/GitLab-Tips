@@ -25,27 +25,27 @@ sudo gitlab-ctl deploy-page up
 # Disable
 sudo gitlab-ctl deploy-page down
 ```
-## GitLab Backup for Omnibus installations
-### Upgrade to new Version
+### GitLab Backup
+#### Upgrade to new Version
 ```shell
 sudo apt-get update
 sudo apt-get upgrade -y
 ```
-### Enable Maintenance
+#### Enable Maintenance
 ```shell
 sudo gitlab-ctl deploy-page up
 ```
-### Backup GitLab configuration
+#### Backup GitLab configuration
 ```shell
 cd
 tar -zcvf gitlab.tar.gz /etc/gitlab
 ```
-### Run GitLab Backup
+#### Backup
 ```shell
 sudo gitlab-rake gitlab:backup:create
 ```
-## GitLab Restore for Omnibus installations
-### Upgrade to new Version
+### GitLab Restore
+#### Upgrade to new Version
 ```shell
 sudo apt-get update
 sudo apt-get upgrade -y
@@ -53,28 +53,28 @@ sudo apt-get upgrade -y
 ```shell
 sudo cp [EPOCH_YYYY_MM_DD_version]_gitlab_backup.tar /var/opt/gitlab/backups/
 ```
-### Stop unicorn & sidekiq services
+#### Stop unicorn & sidekiq services
 ```shell
 sudo gitlab-ctl stop unicorn
 sudo gitlab-ctl stop sidekiq
 ```
-### Verify service status
+#### Verify service status
 ```shell
 sudo gitlab-ctl status
 ```
-### Restore
+#### Restore
 ```shell
 sudo gitlab-rake gitlab:backup:restore BACKUP=[EPOCH_YYYY_MM_DD_version]
 ```
-### Start service
+#### Start service
 ```shell
 sudo gitlab-ctl start
 ```
-### Check
+#### Check
 ```shell
 sudo gitlab-rake gitlab:check SANITIZE=true
 ```
-### Disable Maintenance
+#### Disable Maintenance
 ```shell
 sudo gitlab-ctl deploy-page down
 ```
